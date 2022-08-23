@@ -3,7 +3,8 @@ rootProject.name = 'ar_flutter_plugin'
 
 // Add these lines:
 include ':sceneform'
+include ':sceneformux'
 project(':sceneform').projectDir=new File('../sceneformsrc/sceneform')
 
-include ':sceneformux'
+
 project(':sceneformux').projectDir=new File('../sceneformux/ux')
