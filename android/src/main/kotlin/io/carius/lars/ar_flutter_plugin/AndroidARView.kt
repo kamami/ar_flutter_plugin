@@ -506,7 +506,7 @@ internal class AndroidARView(
         // Configure feature points
         if (argShowFeaturePoints ==
                 true) { // explicit comparison necessary because of nullable type
-            arSceneView.scene.addChild(pointCloudNode)
+            arSceneView.addChild(pointCloudNode)
             showFeaturePoints = true
         } else {
             showFeaturePoints = false
@@ -574,7 +574,7 @@ internal class AndroidARView(
         // Configure world origin
         if (argShowWorldOrigin == true) {
             worldOriginNode = modelBuilder.makeWorldOriginNode(viewContext)
-            arSceneView.scene.addChild(worldOriginNode)
+            arSceneView.addChild(worldOriginNode)
         } else {
             worldOriginNode.setParent(null)
         }
@@ -684,7 +684,7 @@ internal class AndroidARView(
                                         completableFutureSuccess.complete(false)
                                     }
                                 } else {
-                                    arSceneView.scene.addChild(node)
+                                    arSceneView.addChild(node)
                                     completableFutureSuccess.complete(true)
                                 }
                                 completableFutureSuccess.complete(false)
@@ -712,7 +712,7 @@ internal class AndroidARView(
                                         completableFutureSuccess.complete(false)
                                     }
                                 } else {
-                                    arSceneView.scene.addChild(node)
+                                    arSceneView.addChild(node)
                                     completableFutureSuccess.complete(true)
                                 }
                                 completableFutureSuccess.complete(false)
@@ -743,7 +743,7 @@ internal class AndroidARView(
                                         completableFutureSuccess.complete(false)
                                     }
                                 } else {
-                                    arSceneView.scene.addChild(node)
+                                    arSceneView.addChild(node)
                                     completableFutureSuccess.complete(true)
                                 }
                                 completableFutureSuccess.complete(false)
@@ -776,7 +776,7 @@ internal class AndroidARView(
                                         completableFutureSuccess.complete(false)
                                     }
                                 } else {
-                                    arSceneView.scene.addChild(node)
+                                    arSceneView.addChild(node)
                                     completableFutureSuccess.complete(true)
                                 }
                                 completableFutureSuccess.complete(false)
