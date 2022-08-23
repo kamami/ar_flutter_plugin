@@ -38,7 +38,7 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    api project(":sceneformux")
+    implementation project(":sceneformux")
 
     
     implementation 'com.google.android.gms:play-services-auth:16+'
