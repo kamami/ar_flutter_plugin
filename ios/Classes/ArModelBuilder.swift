@@ -184,7 +184,7 @@ class ArModelBuilder: NSObject {
                             /*node?.scale = worldScale
                             node?.position = worldPosition
                             node?.worldOrientation = worldRotation*/
-                              var ambientLight: SCNNode = SCNNode()
+                            let ambientLight = SCNNode()
                             ambientLight.light = SCNLight()
                             ambientLight.light?.shadowMode = .deferred
                             ambientLight.light?.color = UIColor.white
@@ -205,7 +205,7 @@ class ArModelBuilder: NSObject {
                             //     myNode.position = SCNVector3(x: 0,y: 1,z: -3)
                             //     myNode.eulerAngles = SCNVector3(-Float.pi / 2, 0, 0)
                                 // Add the lights to the container
-                                node.addChildNode(ambientLight)
+                                node?.addChildNode(ambientLight)
                                 // node.addChildNode(myNode)
 
                         } catch {
