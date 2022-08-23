@@ -1,3 +1,5 @@
+include ':sceneformux'
+
 rootProject.name = 'ar_flutter_plugin'
 
 // Add these lines:
