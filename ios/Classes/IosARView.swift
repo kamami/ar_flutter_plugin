@@ -54,6 +54,7 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
         self.coachingView.delegate = self
         self.sceneView.session.run(configuration)
         self.sceneView.session.delegate = self
+        self.sceneView.automaticallyUpdatesLighting = true
 
         self.sessionManagerChannel.setMethodCallHandler(self.onSessionMethodCalled)
         self.objectManagerChannel.setMethodCallHandler(self.onObjectMethodCalled)
