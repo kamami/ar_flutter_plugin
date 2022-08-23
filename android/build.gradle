@@ -39,7 +39,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.google.ar:core:1.22.0"
 
-    api project("android/sceneformux")
+    api project(":sceneformux")
 
     implementation 'com.google.android.gms:play-services-auth:16+'
     implementation 'androidx.appcompat:appcompat:1.3.0'
