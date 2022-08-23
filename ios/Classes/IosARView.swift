@@ -50,7 +50,6 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
         super.init()
 
         let configuration = ARWorldTrackingConfiguration() // Create default configuration before initializeARView is called
-        configuration.environmentTexturing = .automatic
         self.sceneView.delegate = self
         self.coachingView.delegate = self
         self.sceneView.session.run(configuration)
@@ -231,6 +230,8 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
     func initializeARView(arguments: Dictionary<String,Any>, result: FlutterResult){
         // Set plane detection configuration
         self.configuration = ARWorldTrackingConfiguration()
+        configuration.environmentTexturing = .automatic
+
         if let planeDetectionConfig = arguments["planeDetectionConfig"] as? Int {
             switch planeDetectionConfig {
                 case 1: 
