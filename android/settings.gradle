@@ -1,11 +1,9 @@
 rootProject.name = 'ar_flutter_plugin'
 
 
-include ':android'
-
 // Add these lines:
-include ':android:sceneform'
-project(':android:sceneform').projectDir=new File('sceneformsrc/sceneform')
+include ':sceneform'
+project(':sceneform').projectDir=new File('sceneformsrc/sceneform')
 
-include ':android:sceneformux'
-project(':android:sceneformux').projectDir=new File('sceneformux/ux')
+include ':sceneformux'
+project(':sceneformux').projectDir=new File('sceneformux/ux')
