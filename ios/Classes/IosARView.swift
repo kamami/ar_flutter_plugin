@@ -50,6 +50,7 @@ class IosARView: NSObject, FlutterPlatformView, ARSCNViewDelegate, UIGestureReco
         super.init()
 
         let configuration = ARWorldTrackingConfiguration() // Create default configuration before initializeARView is called
+        configuration.environmentTexturing = .automatic
         self.sceneView.delegate = self
         self.coachingView.delegate = self
         self.sceneView.session.run(configuration)
