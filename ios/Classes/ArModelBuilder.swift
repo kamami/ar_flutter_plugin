@@ -185,6 +185,30 @@ class ArModelBuilder: NSObject {
                             node?.position = worldPosition
                             node?.worldOrientation = worldRotation*/
 
+                            let ambientLight = SCNNode()
+                            ambientLight.light = SCNLight()
+                            ambientLight.light?.shadowMode = .deferred
+                            ambientLight.light?.color = UIColor.white
+                            ambientLight.light?.type = SCNLight.LightType.ambient
+                            ambientLight.position = SCNVector3(x: 0,y: 5,z: 0)
+
+                            let myNode = SCNNode()
+                                myNode.light = SCNLight()
+                                myNode.light?.type = SCNLight.LightType.directional
+                                myNode.light?.color = UIColor.white
+                                myNode.light?.castsShadow = true
+                                myNode.light?.automaticallyAdjustsShadowProjection = true
+                                myNode.light?.shadowSampleCount = 64
+                                myNode.light?.shadowRadius = 16
+                                myNode.light?.shadowMode = .deferred
+                                myNode.light?.shadowMapSize = CGSize(width: 2048, height: 2048)
+                                myNode.light?.shadowColor = UIColor.black.withAlphaComponent(0.75)
+                                myNode.position = SCNVector3(x: 0,y: 1,z: -3)
+                                myNode.eulerAngles = SCNVector3(-Float.pi / 2, 0, 0)
+                                // Add the lights to the container
+                                node.addChildNode(ambientLight)
+                                node.addChildNode(myNode)
+
                         } catch {
                             print("\(error.localizedDescription)")
                             node = nil
