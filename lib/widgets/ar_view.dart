@@ -129,7 +129,6 @@ class IosARView implements PlatformARView {
 /// If camera permission is not given, the user is prompted to grant it. To modify the UI of the prompts, the following named parameters can be used:
 /// [permissionPromptDescription], [permissionPromptButtonText] and [permissionPromptParentalRestriction].
 class ARView extends StatefulWidget {
-
   /// Function to be called when the AR View is created
   final ARViewCreatedCallback onARViewCreated;
 
@@ -139,28 +138,25 @@ class ARView extends StatefulWidget {
   /// Configures whether or not to display the device's platform type above the AR view. Defaults to false
   final bool showPlatformType;
 
-  ARView(
-      {Key? key,
-      required this.onARViewCreated,
-      this.planeDetectionConfig = PlaneDetectionConfig.none,
-      this.showPlatformType = false,
-     
-    })
-      : super(key: key);
+  ARView({
+    Key? key,
+    required this.onARViewCreated,
+    this.planeDetectionConfig = PlaneDetectionConfig.none,
+    this.showPlatformType = false,
+  }) : super(key: key);
   @override
   _ARViewState createState() => _ARViewState(
-      showPlatformType: this.showPlatformType,
-     
-     );
+        showPlatformType: this.showPlatformType,
+      );
 }
 
 class _ARViewState extends State<ARView> {
   PermissionStatus _cameraPermission = PermissionStatus.denied;
   bool showPlatformType;
 
-  _ARViewState(
-      {required this.showPlatformType,
-    });
+  _ARViewState({
+    required this.showPlatformType,
+  });
 
   @override
   void initState() {
@@ -196,71 +192,94 @@ class _ARViewState extends State<ARView> {
           .limited): //iOS-specific: permissions granted for this specific application
       case (PermissionStatus.granted):
         {
-          return Column(children: [
-            if (showPlatformType) Text(Theme.of(context).platform.toString()),
-            Expanded(
-                child: PlatformARView(Theme.of(context).platform).build(
-                    context: context,
-                    arViewCreatedCallback: widget.onARViewCreated,
-                    planeDetectionConfig: widget.planeDetectionConfig)),
-          ]);
+          return PlatformARView(Theme.of(context).platform).build(
+              context: context,
+              arViewCreatedCallback: widget.onARViewCreated,
+              planeDetectionConfig: widget.planeDetectionConfig);
         }
       case (PermissionStatus.denied):
         {
-          return Center(
-              child: Column(
-            children: [
-              Text("Zur Nutzung von Augmented Reality, benötigen wir den Zugriff auf deine Kamera", style: TextStyle(color: Colors.white)),
-                            SizedBox(height: 12,),
-
+          return  Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                    "Zur Nutzung von Augmented Reality, benötigen wir den Zugriff auf deine Kamera",
+                    style: TextStyle(color: Colors.white), textAlign: TextAlign.center,),
+                SizedBox(
+                  height: 24,
+                ),
                 TextButton(
-                            style: ButtonStyle(
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  padding: MaterialStateProperty.all(
-                      const EdgeInsets.fromLTRB(12, 0, 12, 0)),
-                      foregroundColor: MaterialStateProperty.all(Colors.white),
-                  backgroundColor:
-                      MaterialStateProperty.all(const Color(0xff17c387)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ))),
-                            onPressed: () async => {await requestCameraPermission()}, child: const Text("Zugriff erlauben"))
-            
-            ],
-          ));
+                    style: ButtonStyle(
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        padding: MaterialStateProperty.all(
+                            const EdgeInsets.fromLTRB(12, 0, 12, 0)),
+                        foregroundColor: MaterialStateProperty.all(Colors.white),
+                        backgroundColor:
+                            MaterialStateProperty.all(const Color(0xff17c387)),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ))),
+                    onPressed: () async => {await requestCameraPermission()},
+                    child: const Text("Zugriff erlauben"))
+              ],
+            ),
+          );
         }
       case (PermissionStatus
           .permanentlyDenied): //Android-specific: User needs to open Settings to give permissions
         {
-          return Center(
-              child: Column(
-            children: [
-              Text("Zur Nutzung von Augmented Reality, benötigen wir den Zugriff auf deine Kamera", style: TextStyle(color: Colors.white),),
-              SizedBox(height: 12,),
-              TextButton(
-                            style: ButtonStyle(
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  padding: MaterialStateProperty.all(
-                      const EdgeInsets.fromLTRB(12, 0, 12, 0)),
-                      foregroundColor: MaterialStateProperty.all(Colors.white),
-                  backgroundColor:
-                      MaterialStateProperty.all(const Color(0xff17c387)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ))),
-                            onPressed: () async => {await requestCameraPermissionFromSettings()}, child: const Text("Zugriff erlauben"))
-            ],
-          ));
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                 
+              children: [
+                Text(
+                  "Zur Nutzung von Augmented Reality, benötigen wir den Zugriff auf deine Kamera",
+                  style: TextStyle(color: Colors.white), textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 24,
+                ),
+                TextButton(
+                    style: ButtonStyle(
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        padding: MaterialStateProperty.all(
+                            const EdgeInsets.fromLTRB(12, 0, 12, 0)),
+                        foregroundColor: MaterialStateProperty.all(Colors.white),
+                        backgroundColor:
+                            MaterialStateProperty.all(const Color(0xff17c387)),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ))),
+                    onPressed: () async =>
+                        {await requestCameraPermissionFromSettings()},
+                    child: const Text("Zugriff erlauben"))
+              ],
+            ),
+          );
         }
       case (PermissionStatus.restricted):
         {
           //iOS only
-          return Center(child: Text("Dert Zugriff auf deine Kamerawurde permanent untersagt. Bitte überprüfe die Berechtigungen in den Systemeinstellungen."));
+          return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                    "Dert Zugriff auf deine Kamerawurde permanent untersagt. Bitte überprüfe die Berechtigungen in den Systemeinstellungen.", textAlign: TextAlign.center,  style: TextStyle(color: Colors.white)),
+              ));
         }
       default:
-        return Text('something went wrong');
+        return Center(child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text('Etwas ist schief gelaufen', textAlign: TextAlign.center,   style: TextStyle(color: Colors.white)),
+        ));
     }
   }
 }
