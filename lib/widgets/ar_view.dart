@@ -136,13 +136,11 @@ class ARView extends StatefulWidget {
   final PlaneDetectionConfig planeDetectionConfig;
 
   /// Configures whether or not to display the device's platform type above the AR view. Defaults to false
-  final bool showPlatformType;
 
   ARView({
     Key? key,
     required this.onARViewCreated,
     this.planeDetectionConfig = PlaneDetectionConfig.none,
-    this.showPlatformType = false,
   }) : super(key: key);
   @override
   _ARViewState createState() => _ARViewState(
