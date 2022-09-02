@@ -250,7 +250,6 @@ internal class AndroidARView(
                                 val config = Config(arSceneView.session)
                                 config.cloudAnchorMode = Config.CloudAnchorMode.ENABLED
                                 config.updateMode = Config.UpdateMode.LATEST_CAMERA_IMAGE
-                                 ArCoreUtils.updateLightEstimationModeFromView(session, config, arSceneView)
 
                                 config.focusMode = Config.FocusMode.AUTO
                                 arSceneView.session?.configure(config)
@@ -400,7 +399,6 @@ internal class AndroidARView(
                     val config = Config(session)
                     config.updateMode = Config.UpdateMode.LATEST_CAMERA_IMAGE
                     config.focusMode = Config.FocusMode.AUTO
-                                                     ArCoreUtils.updateLightEstimationModeFromView(session, config, arSceneView)
 
                     session.configure(config)
                     arSceneView.setSession(session)
