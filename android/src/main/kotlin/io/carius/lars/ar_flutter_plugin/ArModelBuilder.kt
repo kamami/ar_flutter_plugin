@@ -6,7 +6,6 @@ import android.content.Context
 import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.math.Quaternion
-import com.google.ar.sceneform.assets.RenderableSource
 
 import java.util.concurrent.CompletableFuture
 import android.net.Uri
@@ -97,11 +96,8 @@ class ArModelBuilder {
         val gltfNode = CustomTransformableNode(transformationSystem, objectManagerChannel, enablePans, enableRotation)
 
         ModelRenderable.builder()
-                .setSource(context, RenderableSource.builder().setSource(
-                        context,
-                        Uri.parse(modelPath),
-                        RenderableSource.SourceType.GLTF2)
-                        .build())
+               .setSource(context, Uri.parse(modelPath))
+                             .setIsFilamentGltf(true)
                 .setRegistryId(modelPath)
                 .build()
                 .thenAccept{ renderable ->
@@ -139,11 +135,8 @@ class ArModelBuilder {
         )*/
 
         ModelRenderable.builder()
-                .setSource(context, RenderableSource.builder().setSource(
-                        context,
-                        Uri.parse(modelPath),
-                        RenderableSource.SourceType.GLB)
-                        .build())
+               .setSource(context, Uri.parse(modelPath))
+                             .setIsFilamentGltf(true)
                 .setRegistryId(modelPath)
                 .build()
                 .thenAccept{ renderable ->

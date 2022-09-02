@@ -678,7 +678,7 @@ internal class AndroidARView(
                                 if (anchorName != null && anchorType != null) {
                                     val anchorNode = arSceneView.scene.findByName(anchorName) as AnchorNode?
                                     if (anchorNode != null) {
-                                        anchorNode.scene.addChild(node)
+                                        anchorNode.scene?.addChild(node)
                                         completableFutureSuccess.complete(true)
                                     } else {
                                         completableFutureSuccess.complete(false)
@@ -706,7 +706,7 @@ internal class AndroidARView(
                                 if (anchorName != null && anchorType != null) {
                                     val anchorNode = arSceneView.scene.findByName(anchorName) as AnchorNode?
                                     if (anchorNode != null) {
-                                        anchorNode.scene.addChild(node)
+                                        anchorNode.scene?.addChild(node)
                                         completableFutureSuccess.complete(true)
                                     } else {
                                         completableFutureSuccess.complete(false)
@@ -737,7 +737,7 @@ internal class AndroidARView(
                                 if (anchorName != null && anchorType != null) {
                                     val anchorNode = arSceneView.scene.findByName(anchorName) as AnchorNode?
                                     if (anchorNode != null) {
-                                        anchorNode.scene.addChild(node)
+                                        anchorNode.scene?.addChild(node)
                                         completableFutureSuccess.complete(true)
                                     } else {
                                         completableFutureSuccess.complete(false)
@@ -770,7 +770,7 @@ internal class AndroidARView(
                                 if (anchorName != null && anchorType != null) {
                                     val anchorNode = arSceneView.scene.findByName(anchorName) as AnchorNode?
                                     if (anchorNode != null) {
-                                        anchorNode.scene.addChild(node)
+                                        anchorNode.scene?.addChild(node)
                                         completableFutureSuccess.complete(true)
                                     } else {
                                         completableFutureSuccess.complete(false)
