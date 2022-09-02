@@ -52,7 +52,6 @@ import com.google.ar.core.TrackingState
 
 
 
-
 internal class AndroidARView(
         val activity: Activity,
         context: Context,
@@ -251,6 +250,8 @@ internal class AndroidARView(
                                 val config = Config(arSceneView.session)
                                 config.cloudAnchorMode = Config.CloudAnchorMode.ENABLED
                                 config.updateMode = Config.UpdateMode.LATEST_CAMERA_IMAGE
+                                 ArCoreUtils.updateLightEstimationModeFromView(session, config, arSceneView)
+
                                 config.focusMode = Config.FocusMode.AUTO
                                 arSceneView.session?.configure(config)
 
@@ -399,8 +400,10 @@ internal class AndroidARView(
                     val config = Config(session)
                     config.updateMode = Config.UpdateMode.LATEST_CAMERA_IMAGE
                     config.focusMode = Config.FocusMode.AUTO
+                                                     ArCoreUtils.updateLightEstimationModeFromView(session, config, arSceneView)
+
                     session.configure(config)
-                    arSceneView.setupSession(session)
+                    arSceneView.setSession(session)
                 }
             } catch (ex: UnavailableUserDeclinedInstallationException) {
                 // Display an appropriate message to the user zand return gracefully.
