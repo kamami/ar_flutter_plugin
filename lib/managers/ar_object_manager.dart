@@ -131,10 +131,7 @@ class ARObjectManager {
       });
 
       if (planeAnchor != null) {
-        if (planeAnchor.childNodes.contains(node.name)) {
-          print(planeAnchor.childNodes);
-          removeNode(node);
-        }
+       
         planeAnchor.childNodes.add(node.name);
         return await _channel.invokeMethod<bool>('addNodeToPlaneAnchor',
             {'node': node.toMap(), 'anchor': planeAnchor.toJson()});

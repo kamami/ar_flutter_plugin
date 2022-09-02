@@ -129,9 +129,6 @@ class IosARView implements PlatformARView {
 /// If camera permission is not given, the user is prompted to grant it. To modify the UI of the prompts, the following named parameters can be used:
 /// [permissionPromptDescription], [permissionPromptButtonText] and [permissionPromptParentalRestriction].
 class ARView extends StatefulWidget {
-  final String permissionPromptDescription;
-  final String permissionPromptButtonText;
-  final String permissionPromptParentalRestriction;
 
   /// Function to be called when the AR View is created
   final ARViewCreatedCallback onARViewCreated;
@@ -147,33 +144,23 @@ class ARView extends StatefulWidget {
       required this.onARViewCreated,
       this.planeDetectionConfig = PlaneDetectionConfig.none,
       this.showPlatformType = false,
-      this.permissionPromptDescription =
-          "Camera permission must be given to the app for AR functions to work",
-      this.permissionPromptButtonText = "Grant Permission",
-      this.permissionPromptParentalRestriction =
-          "Camera permission is restriced by the OS, please check parental control settings"})
+     
+    })
       : super(key: key);
   @override
   _ARViewState createState() => _ARViewState(
       showPlatformType: this.showPlatformType,
-      permissionPromptDescription: this.permissionPromptDescription,
-      permissionPromptButtonText: this.permissionPromptButtonText,
-      permissionPromptParentalRestriction:
-          this.permissionPromptParentalRestriction);
+     
+     );
 }
 
 class _ARViewState extends State<ARView> {
   PermissionStatus _cameraPermission = PermissionStatus.denied;
   bool showPlatformType;
-  String permissionPromptDescription;
-  String permissionPromptButtonText;
-  String permissionPromptParentalRestriction;
 
   _ARViewState(
       {required this.showPlatformType,
-      required this.permissionPromptDescription,
-      required this.permissionPromptButtonText,
-      required this.permissionPromptParentalRestriction});
+    });
 
   @override
   void initState() {
@@ -223,10 +210,23 @@ class _ARViewState extends State<ARView> {
           return Center(
               child: Column(
             children: [
-              Text(permissionPromptDescription),
-              ElevatedButton(
-                  child: Text(permissionPromptButtonText),
-                  onPressed: () async => {await requestCameraPermission()})
+              Text("Zur Nutzung von Augmented Reality, benötigen wir den Zugriff auf deine Kamera", style: TextStyle(color: Colors.white)),
+                            SizedBox(height: 12,),
+
+                TextButton(
+                            style: ButtonStyle(
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  padding: MaterialStateProperty.all(
+                      const EdgeInsets.fromLTRB(12, 0, 12, 0)),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                  backgroundColor:
+                      MaterialStateProperty.all(const Color(0xff17c387)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ))),
+                            onPressed: () async => {await requestCameraPermission()}, child: const Text("Zugriff erlauben"))
+            
             ],
           ));
         }
@@ -236,18 +236,28 @@ class _ARViewState extends State<ARView> {
           return Center(
               child: Column(
             children: [
-              Text(permissionPromptDescription),
-              ElevatedButton(
-                  child: Text(permissionPromptButtonText),
-                  onPressed: () async =>
-                      {await requestCameraPermissionFromSettings()})
+              Text("Zur Nutzung von Augmented Reality, benötigen wir den Zugriff auf deine Kamera", style: TextStyle(color: Colors.white),),
+              SizedBox(height: 12,),
+              TextButton(
+                            style: ButtonStyle(
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  padding: MaterialStateProperty.all(
+                      const EdgeInsets.fromLTRB(12, 0, 12, 0)),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                  backgroundColor:
+                      MaterialStateProperty.all(const Color(0xff17c387)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ))),
+                            onPressed: () async => {await requestCameraPermissionFromSettings()}, child: const Text("Zugriff erlauben"))
             ],
           ));
         }
       case (PermissionStatus.restricted):
         {
           //iOS only
-          return Center(child: Text(permissionPromptParentalRestriction));
+          return Center(child: Text("Dert Zugriff auf deine Kamerawurde permanent untersagt. Bitte überprüfe die Berechtigungen in den Systemeinstellungen."));
         }
       default:
         return Text('something went wrong');
