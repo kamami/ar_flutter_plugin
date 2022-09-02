@@ -500,8 +500,7 @@ internal class AndroidARView(
         if (argShowAnimatedGuide == true) { // explicit comparison necessary because of nullable type
             showAnimatedGuide = true
             val view = activity.findViewById(R.id.content) as ViewGroup
-            animatedGuide = activity.layoutInflater.inflate(com.google.ar.sceneform.ux.R.layout.sceneform_plane_discovery_layout, null)
-            view.addView(animatedGuide)
+          
         }
 
         // Configure feature points
